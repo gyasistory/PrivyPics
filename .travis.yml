@@ -1,0 +1,25 @@
+language: android
+sudo: required
+jdk:  oraclejdk8
+env:
+  global:
+  - GRADLE_OPTS="Xmx2048m"
+before_cache:
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+  - $HOME/.android/build-cache
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+
+install: skip
+
+jobs:
+  include:
+  before_script:skip
+  script: ./gradlew check --continue --stacktrace --parallel
+  
+notifications:
+  emails: true
