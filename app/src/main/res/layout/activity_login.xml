@@ -3,6 +3,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.story_tail.privypics.ui.login.viewmodel.LogInViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
@@ -58,10 +65,11 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="216dp"
                 android:layout_marginEnd="24dp"
-
                 android:hint="@string/prompt_email"
+
                 android:inputType="textEmailAddress"
                 android:selectAllOnFocus="true"
+                android:text="@{viewModel.email}"
                 android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -74,12 +82,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-
                 android:hint="@string/prompt_password"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:selectAllOnFocus="true"
+                android:text="@{viewModel.password}"
                 android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -97,6 +105,7 @@
                 android:layout_marginBottom="64dp"
                 android:background="@color/colorAccent"
                 android:enabled="false"
+                android:onClick="@{() -> viewModel.onSignInClick()}"
                 android:padding="10dp"
                 android:text="@string/action_sign_in"
                 android:textColor="@android:color/white"
