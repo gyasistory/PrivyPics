@@ -1,9 +1,9 @@
 language: android
 sudo: required
 jdk:  oraclejdk8
-env:
-  global:
-  - GRADLE_OPTS="Xmx2048m"
+#env:
+#  global:
+#  - GRADLE_OPTS="Xmx2048m"
 branches:
   only:
     - development
