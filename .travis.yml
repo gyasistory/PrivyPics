@@ -38,7 +38,9 @@ jobs:
       stage: compile
 
       before_script: skip
-      script: ./gradlew check --continue --stacktrace --parallel
+      script:
+        - chmod +x gradlew
+        - ./gradlew check --continue --stacktrace --parallel
 
       after_failure:
         - cat /home/travis/build/CruGlobal/mpdx-android/build/reports/lint-results*.xml
