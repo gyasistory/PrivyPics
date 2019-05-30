@@ -38,7 +38,7 @@ jobs:
       stage: compile
 
       before_script: skip
-      script: ./gradlew assembleDevelopmentDebug --continue --stacktrace --parallel
+      script: ./gradlew assemble --continue --stacktrace --parallel
 
     - name: "Static Analysis"
       stage: compile
