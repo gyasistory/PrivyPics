@@ -34,12 +34,6 @@ install: skip
 
 jobs:
   include:
-    - name: "Build Debug"
-      stage: compile
-
-      before_script: skip
-      script: ./gradlew assemble --continue --stacktrace --parallel
-
     - name: "Static Analysis"
       stage: compile
 
@@ -49,14 +43,6 @@ jobs:
       after_failure:
         - cat /home/travis/build/CruGlobal/mpdx-android/build/reports/lint-results*.xml
         - cat /home/travis/build/CruGlobal/mpdx-android/*/build/reports/lint-results*.xml
-
-    - name: "Build Release"
-      stage: test
-      if: type != push OR (branch != master AND NOT (branch =~ ^maint\/v(\d+\.){1,}x$))
-
-      before_script: skip
-      script: ./gradlew assembleProductionRelease --continue --stacktrace --parallel
-    #      script: ./gradlew assembleProductionRelease crashlyticsGenerateSymbolsProductionRelease --continue --stacktrace --parallel
 
 notifications:
   email: false
