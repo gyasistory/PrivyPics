@@ -9,6 +9,17 @@ branches:
     - development
     - master
 
+stages:
+  - name: compile
+    if: tag IS blank
+  - name: test
+    if: tag IS blank
+  - name: release
+    if: type = push
+
+before_install:
+  - chmod +x gradlew
+  -
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
