@@ -4,6 +4,11 @@ jdk:  oraclejdk8
 env:
   global:
   - GRADLE_OPTS="Xmx2048m"
+branches:
+  only:
+    - development
+    - master
+
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -18,8 +23,29 @@ install: skip
 
 jobs:
   include:
-  before_script:skip
-  script: ./gradlew check --continue --stacktrace --parallel
-  
+    - name: "Build Debug"
+      stage: compile
+
+      before_script: skip
+      script: ./gradlew assembleDevelopmentDebug --continue --stacktrace --parallel
+
+    - name: "Static Analysis"
+      stage: compile
+
+      before_script: skip
+      script: ./gradlew check jacocoTestReport --continue --stacktrace --parallel
+
+      after_failure:
+        - cat /home/travis/build/CruGlobal/mpdx-android/build/reports/lint-results*.xml
+        - cat /home/travis/build/CruGlobal/mpdx-android/*/build/reports/lint-results*.xml
+
+    - name: "Build Release"
+      stage: test
+      if: type != push OR (branch != master AND NOT (branch =~ ^maint\/v(\d+\.){1,}x$))
+
+      before_script: skip
+      script: ./gradlew assembleProductionRelease --continue --stacktrace --parallel
+    #      script: ./gradlew assembleProductionRelease crashlyticsGenerateSymbolsProductionRelease --continue --stacktrace --parallel
+
 notifications:
-  emails: true
+  email: false
