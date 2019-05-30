@@ -29,6 +29,9 @@ cache:
   - $HOME/.android/build-cache
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
+before_install:
+  # Install SDK license so Android Gradle plugin can install deps.
+  - mkdir "$ANDROID_HOME/licenses" || true
 
 install: skip
 
