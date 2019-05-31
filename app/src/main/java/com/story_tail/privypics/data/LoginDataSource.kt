@@ -8,28 +8,31 @@ import java.io.IOException
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
 class LoginDataSource {
+    val mAuth by lazy { FirebaseAuth.getInstance() }
 
     fun login(username: String, password: String): Result<LoggedInUser> {
-        try {
-            val mAuth = FirebaseAuth.getInstance()
-            mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    mAuth.currentUser?.let { user ->
-                        Result.Success(LoggedInUser(user.uid, user.displayName ?: ""))
-                    }
-                } else {
-                    Result.Error(IOException("Error logging in"))
-                }
+        var result: Result<LoggedInUser>? = null
+        val signInTask = mAuth.signInWithEmailAndPassword(username, password)
+        if (signInTask.isSuccessful) {
+            mAuth.currentUser?.let { user ->
+                result = Result.Success(LoggedInUser(user.uid, user.displayName ?: ""))
             }
-            val fakeUser = LoggedInUser(java.util.UUID.randomUUID().toString(), "Jane Doe")
-            return Result.Success(fakeUser)
-        } catch (e: Throwable) {
-            return Result.Error(IOException("Error logging in", e))
+        } else {
+            val task = mAuth.createUserWithEmailAndPassword(username, password)
+            if (task.isSuccessful) {
+                mAuth.currentUser?.let { user ->
+                    result = Result.Success(LoggedInUser(user.uid, user.displayName ?: ""))
+                }
+            } else {
+
+                result = Result.Error(IOException("Error logging in", task.exception))
+            }
         }
+        return result ?: Result.Error(IOException("Error logging in"))
     }
 
     fun logout() {
-        // TODO: revoke authentication
+        mAuth.signOut()
     }
 }
 
