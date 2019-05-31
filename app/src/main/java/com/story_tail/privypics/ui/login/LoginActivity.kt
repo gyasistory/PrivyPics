@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
-            finish()
+//            finish()
         })
 
         username.afterTextChanged {
@@ -108,6 +108,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.LENGTH_LONG
         ).show()
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
