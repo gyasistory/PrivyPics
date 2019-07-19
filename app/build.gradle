@@ -65,6 +65,13 @@ dependencies {
     androidTestImplementation "androidx.test:runner:${runner}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${espresso_core}"
 
+    implementation 'com.google.firebase:firebase-core:17.0.1'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    implementation 'com.google.firebase:firebase-perf:18.0.1'
+    implementation 'com.google.firebase:firebase-core:17.0.1'
+    implementation 'com.google.firebase:firebase-auth:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-inappmessaging-display:18.0.2'
     // Android Support
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${archLifecycleVersion}"
     implementation "android.arch.navigation:navigation-fragment:${navigation}"
