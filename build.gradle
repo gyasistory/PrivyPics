@@ -5,7 +5,7 @@ ext {
     core_ktx = '1.0.2'
     espresso_core = '3.2.0'
     firebase_auth = '19.0.0'
-    firebase_core = '17.0.1'
+    firebase_core = '17.1.0'
     firebase_inappmessaging = '18.0.2'
     firebase_messagin = '19.0.1'
     junit = '4.12'
