@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
@@ -39,7 +39,7 @@ dependencies {
     implementation "com.google.android.material:material:${material}"
     implementation "androidx.constraintlayout:constraintlayout:${constraintlayout}"
     implementation "androidx.annotation:annotation:${annotation}"
-    implementation "androidx.lifecycle:lifecycle-extensions:${lifecycle_extensions}"
+
     implementation "com.google.firebase:firebase-core:${firebase_core}"
     implementation "com.google.firebase:firebase-messaging:${firebase_messagin}"
     implementation "com.google.firebase:firebase-auth:${firebase_auth}"
@@ -51,4 +51,28 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui:${navigation}"
     implementation "androidx.recyclerview:recyclerview:${recyclerview}"
     implementation "androidx.viewpager:viewpager:${viewpager}"
+
+    // Room components
+    implementation "androidx.room:room-runtime:${roomVersion}"
+    implementation "androidx.room:room-ktx:${roomVersion}"
+    kapt "androidx.room:room-compiler:${roomVersion}"
+    androidTestImplementation "androidx.room:room-testing:${roomVersion}"
+
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-extensions:${lifecycle_extensions}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${archLifecycleVersion}"
+    androidTestImplementation "androidx.arch.core:core-testing:${androidxArchVersion}"
+
+    // ViewModel Kotlin support
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${archLifecycleVersion}"
+
+    // Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}"
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }
