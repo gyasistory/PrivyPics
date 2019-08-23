@@ -28,29 +28,45 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_stdlib}"
-    implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation "androidx.core:core-ktx:${core_ktx}"
+
+    // Unit Testing
+    testImplementation "junit:junit:${junit}"
+    androidTestImplementation "androidx.test:runner:${runner}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${espresso_core}"
+
+    // Android Support
+    implementation "android.arch.navigation:navigation-fragment:${navigation}"
+    implementation "android.arch.navigation:navigation-ui:${navigation}"
+    implementation "androidx.recyclerview:recyclerview:${recyclerview}"
+    implementation "androidx.viewpager:viewpager:${viewpager}"
+    implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation "androidx.legacy:legacy-support-v4:${legacy_support}"
     implementation "com.google.android.material:material:${material}"
     implementation "androidx.constraintlayout:constraintlayout:${constraintlayout}"
     implementation "androidx.annotation:annotation:${annotation}"
 
+    // Firebase
     implementation "com.google.firebase:firebase-core:${firebase_core}"
     implementation "com.google.firebase:firebase-messaging:${firebase_messagin}"
     implementation "com.google.firebase:firebase-auth:${firebase_auth}"
     implementation "com.google.firebase:firebase-inappmessaging-display:${firebase_inappmessaging}"
-    testImplementation "junit:junit:${junit}"
-    androidTestImplementation "androidx.test:runner:${runner}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${espresso_core}"
-    implementation "android.arch.navigation:navigation-fragment:${navigation}"
-    implementation "android.arch.navigation:navigation-ui:${navigation}"
-    implementation "androidx.recyclerview:recyclerview:${recyclerview}"
-    implementation "androidx.viewpager:viewpager:${viewpager}"
 
     // Room components
     implementation "androidx.room:room-runtime:${roomVersion}"
@@ -67,8 +83,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${archLifecycleVersion}"
 
     // Coroutines
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}"
+//    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}"
+//    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}"
 }
 
 kotlin {
