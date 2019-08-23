@@ -21,7 +21,7 @@ interface CategoryImageDao {
         ON image_table.id = category_image_join_table.imageId
         WHERE category_image_join_table.categoryId = :categoryId
         """)
-    fun getImagesByCategory(categoryId: UUID): List<Image>
+    fun getImagesByCategory(categoryId: UUID): LiveData<List<Image>>
 
     @Query("""
         SELECT * FROM category_table
