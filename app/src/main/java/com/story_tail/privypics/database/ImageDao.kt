@@ -1,5 +1,6 @@
 package com.story_tail.privypics.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.story_tail.privypics.model.Image
 
@@ -15,5 +16,5 @@ interface ImageDao {
     fun deleteImage(vararg image: Image)
 
     @Query("SELECT * from image_table ORDER BY dateTaken DESC")
-    fun getAllImages(): List<Image>
+    fun getAllImages(): LiveData<List<Image>>
 }

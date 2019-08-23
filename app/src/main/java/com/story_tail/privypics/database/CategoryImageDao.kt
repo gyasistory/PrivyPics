@@ -1,5 +1,6 @@
 package com.story_tail.privypics.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -28,7 +29,7 @@ interface CategoryImageDao {
         ON category_table.id = category_image_join_table.categoryId
         WHERE category_image_join_table.categoryId = :imageId
     """)
-    fun getCategoryByImage(imageId: UUID): List<Category>
+    fun getCategoryByImage(imageId: UUID): LiveData<List<Category>>
 
     @Delete
     fun deleteCategoryImage(vararg categoryImage: CategoryImage)
