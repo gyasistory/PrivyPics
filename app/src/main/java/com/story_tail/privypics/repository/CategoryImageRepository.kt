@@ -1,8 +1,9 @@
-package com.story_tail.privypics.database
+package com.story_tail.privypics.repository
 
 import android.content.Context
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import com.story_tail.privypics.database.PrivyPicDatabase
 import com.story_tail.privypics.model.Category
 import com.story_tail.privypics.model.CategoryImage
 import com.story_tail.privypics.model.Image

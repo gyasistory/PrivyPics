@@ -1,14 +1,18 @@
-package com.story_tail.privypics.database
+package com.story_tail.privypics.repository
 
 import android.content.Context
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import com.story_tail.privypics.database.ImageDao
+import com.story_tail.privypics.database.PrivyPicDatabase
 import com.story_tail.privypics.model.Image
 import javax.inject.Singleton
 
 @Singleton
 class ImageRepository(context: Context) {
-    private val imageDao: ImageDao by lazy { PrivyPicDatabase.getDatabase(context).imageDao() }
+    private val imageDao: ImageDao by lazy { PrivyPicDatabase.getDatabase(
+        context
+    ).imageDao() }
 
     @WorkerThread
     suspend fun insertImage(image: Image) {
