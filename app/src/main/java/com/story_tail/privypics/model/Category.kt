@@ -7,7 +7,7 @@ import java.util.*
 
 @Entity(tableName = "category_table")
 class Category{
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     var id: UUID = UUID.randomUUID()
 
     @ColumnInfo(typeAffinity = ColumnInfo.TEXT)

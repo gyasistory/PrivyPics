@@ -2,7 +2,6 @@ package com.story_tail.privypics.model
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import java.util.*
 
 @Entity(
     tableName = "category_image_join_table",
@@ -17,4 +16,4 @@ import java.util.*
         childColumns = arrayOf("categoryId")
     )]
 )
-class CategoryImage(val imageId: UUID, val categoryId: UUID)
+class CategoryImage(val imageId: String, val categoryId: String)
