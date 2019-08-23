@@ -6,9 +6,7 @@ import androidx.lifecycle.LiveData
 import com.story_tail.privypics.database.CategoryDao
 import com.story_tail.privypics.database.PrivyPicDatabase
 import com.story_tail.privypics.model.Category
-import javax.inject.Singleton
 
-@Singleton
 class CategoryRepository(context: Context) {
     private val categoryDao: CategoryDao by lazy {
         PrivyPicDatabase.getDatabase(context).categoryDao()
@@ -20,7 +18,7 @@ class CategoryRepository(context: Context) {
     }
 
     fun getAllCategorys(): LiveData<List<Category>> {
-        return categoryDao.getAllCategorys()
+        return categoryDao.getAllCategories()
     }
 
     @WorkerThread

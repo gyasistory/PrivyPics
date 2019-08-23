@@ -27,4 +27,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="menu_take_pic">Take Photo</string>
     <string name="categories">Categories</string>
+    <string name="category_all">All</string>
 </resources>

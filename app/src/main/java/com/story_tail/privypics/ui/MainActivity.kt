@@ -12,11 +12,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.story_tail.privypics.R
+import com.story_tail.privypics.model.Category
+import com.story_tail.privypics.viewmodel.MainActivityViewModel
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private val mainActivityViewModel by lazy {
+        ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +35,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fab.setOnClickListener { takePictureIntent() }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
+        navView.menu?.getItem(0)?.subMenu?.let { categoriesMenu ->
+            mainActivityViewModel.getAllCategories().observe(this, Observer { categories ->
+                categories.forEach { cat ->
+                    categoriesMenu.add(cat.name)
+                }
+            })
+        }
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
             R.string.navigation_drawer_open,
@@ -37,6 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener(this)
+        updateCategoryMenu()
     }
 
     override fun onBackPressed() {
@@ -51,8 +66,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+
         return true
     }
+
 
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 //        // Handle action bar item clicks here. The action bar will
@@ -74,18 +91,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_gallery -> {
 
             }
-//            R.id.nav_slideshow -> {
-//
-//            }
-//            R.id.nav_tools -> {
-//
-//            }
-//            R.id.nav_share -> {
-//
-//            }
-//            R.id.nav_send -> {
-//
-//            }
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         drawerLayout.closeDrawer(GravityCompat.START)
@@ -104,6 +109,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     REQUEST_IMAGE_CAPTURE
                 )
             }
+        }
+    }
+
+    // Temporary
+    private fun updateCategoryMenu() {
+        if(mainActivityViewModel.getAllCategories().value.isNullOrEmpty()) {
+            val category = Category()
+            category.name = getString(R.string.category_all)
+            category.priority = 0
+            mainActivityViewModel.insertCategory(category)
         }
     }
 
