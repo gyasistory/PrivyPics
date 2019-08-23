@@ -1,4 +1,4 @@
-package com.story_tail.privypics
+package com.story_tail.privypics.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -14,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.story_tail.privypics.R
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,7 +29,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this, drawerLayout, toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
@@ -90,14 +93,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == Companion.REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             Toast.makeText(this, "You got an image", Toast.LENGTH_LONG).show()
         }
     }
     private fun takePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
             intent.resolveActivity(packageManager)?.also {
-                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+                startActivityForResult(intent,
+                    REQUEST_IMAGE_CAPTURE
+                )
             }
         }
     }

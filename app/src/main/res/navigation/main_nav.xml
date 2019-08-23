@@ -4,11 +4,11 @@
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_nav"
             app:startDestination="@id/nav_pic_gallery">
 
-    <fragment android:id="@+id/nav_pic_gallery" android:name="com.story_tail.privypics.PicGalleryFragment"
+    <fragment android:id="@+id/nav_pic_gallery" android:name="com.story_tail.privypics.ui.PicGalleryFragment"
               android:label="Your Pics" tools:layout="@layout/fragment_pic_gallary">
         <action android:id="@+id/action_nav_pic_gallery_to_viewImageFragment" app:destination="@id/viewImageFragment"/>
     </fragment>
-    <fragment android:id="@+id/viewImageFragment" android:name="com.story_tail.privypics.ViewImageFragment"
+    <fragment android:id="@+id/viewImageFragment" android:name="com.story_tail.privypics.ui.ViewImageFragment"
               android:label="fragment_view_image" tools:layout="@layout/fragment_view_image"/>
     <activity android:id="@+id/loginActivity" android:name="com.story_tail.privypics.ui.login.LoginActivity"
               android:label="activity_login" tools:layout="@layout/activity_login"/>
