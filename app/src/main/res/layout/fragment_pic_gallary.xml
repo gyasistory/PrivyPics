@@ -5,7 +5,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            tools:context=".PicGallaryFragment"
+            tools:context=".PicGalleryFragment"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/gallery_item_layout"
             tools:spanCount="5"
