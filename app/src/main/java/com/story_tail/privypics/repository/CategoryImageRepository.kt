@@ -1,7 +1,6 @@
 package com.story_tail.privypics.repository
 
 import android.content.Context
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.story_tail.privypics.database.PrivyPicDatabase
 import com.story_tail.privypics.model.Category
@@ -23,12 +22,10 @@ class CategoryImageRepository(context: Context) {
         return categoryImageDao.getCategoryByImage(imageId = image.id)
     }
 
-    @WorkerThread
     suspend fun insertCategoryImage(categoryImage: CategoryImage) {
         categoryImageDao.insert(categoryImage)
     }
 
-    @WorkerThread
     suspend fun deleteCategoryImage(categoryImage: CategoryImage) {
         categoryImageDao.deleteCategoryImage(categoryImage)
     }
