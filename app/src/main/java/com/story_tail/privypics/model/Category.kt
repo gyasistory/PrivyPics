@@ -2,13 +2,13 @@ package com.story_tail.privypics.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import java.util.*
 
-@Entity(tableName = "category_table")
+@Entity(tableName = "category_table", indices = [Index(value = ["name"], unique = true)])
 class Category{
-    @PrimaryKey
-    var id: UUID = UUID.randomUUID()
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
 
     @ColumnInfo(typeAffinity = ColumnInfo.TEXT)
     var name: String? =null

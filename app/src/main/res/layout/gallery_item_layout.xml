@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:orientation="vertical"
-                                                   android:layout_width="75dp"
-                                                   android:layout_height="75dp" android:id="@+id/linearLayout">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:srcCompat="@tools:sample/backgrounds/scenic"
-            android:id="@+id/galleryItemImgaeView" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:scaleType="fitXY" android:padding="5dp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable name="image" type="com.story_tail.privypics.model.Image" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/galleryItemImgaeView"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:padding="5dp"
+            app:bitmap="@{image.data}"
+            android:scaleType="fitXY"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+</layout>

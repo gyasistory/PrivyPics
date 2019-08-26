@@ -15,7 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.story_tail.privypics.MainActivity
+import com.story_tail.privypics.ui.MainActivity
 
 import com.story_tail.privypics.R
 
