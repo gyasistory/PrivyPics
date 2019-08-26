@@ -24,7 +24,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
 
     //region get Data
     fun getAllCategories() : LiveData<List<Category>> {
-        return categoryRepository.getAllCategorys()
+        return categoryRepository.getAllCategories()
     }
 
     //endregion get Data
