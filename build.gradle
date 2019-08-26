@@ -19,6 +19,7 @@ ext {
     material = '1.0.0'
     navigation_fragment = '1.0.0'
     navigation = '1.0.0'
+    picasso = '2.71828'
     recyclerview = '1.0.0'
     runner = '1.2.0'
     roomVersion = '2.2.0'
