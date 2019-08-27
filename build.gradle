@@ -20,7 +20,7 @@ ext {
     navigation = '1.0.0'
     recyclerview = '1.0.0'
     runner = '1.2.0'
-    roomVersion = '2.2.0-alpha02'
+    roomVersion = '2.2.0-beta01'
     viewpager = '1.0.0'
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
