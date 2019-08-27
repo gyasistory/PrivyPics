@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -130,6 +131,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             category.priority = 0
             mainActivityViewModel.insertCategory(category)
         }
+    }
+
+    private fun addPhotoDialog(photo: ByteArray) {
+        val dialogBuilder = AlertDialog.Builder(this)
     }
 
     companion object {
