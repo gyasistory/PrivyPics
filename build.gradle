@@ -14,7 +14,7 @@ ext {
     junit = '4.12'
     kotlin_stdlib = kotlin_version
     legacy_support = '1.0.0'
-    lifecycle_extensions = '2.0.0'
+    lifecycle_extensions = '2.1.0'
     material = '1.0.0'
     navigation_fragment = '1.0.0'
     navigation = '1.0.0'
