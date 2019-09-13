@@ -1,0 +1,101 @@
+{
+  "project_info": {
+    "project_number": "972302655193",
+    "firebase_url": "https://privypics-e24cc.firebaseio.com",
+    "project_id": "privypics-e24cc",
+    "storage_bucket": "privypics-e24cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972302655193:android:b9f79357ef584beb",
+        "android_client_info": {
+          "package_name": "com.story_tail.privypics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972302655193-lg796afaip72d65tjmc2nv7t9vvdk1ah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.story_tail.privypics",
+            "certificate_hash": "74bdd9fcf500041e0feef1e0a87ee6474b540cb9"
+          }
+        },
+        {
+          "client_id": "972302655193-r9k28n3ojv52173m9r8cmrakrt99jtc9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.story_tail.privypics",
+            "certificate_hash": "569173f4f3bc39385f179de4fbb2028bfd0ee2fb"
+          }
+        },
+        {
+          "client_id": "972302655193-68egeb5u7hsfq0cu27tu7u67g36o6p3c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6-YBYsG4qBMXH0D2sCNpJ4OlRvcgl11w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972302655193-68egeb5u7hsfq0cu27tu7u67g36o6p3c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972302655193:android:0d60402fd5fca34f",
+        "android_client_info": {
+          "package_name": "com.story_tail.privypics.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972302655193-7ko4v156khl103c1sor30p3uirkeadr1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.story_tail.privypics.dev",
+            "certificate_hash": "74bdd9fcf500041e0feef1e0a87ee6474b540cb9"
+          }
+        },
+        {
+          "client_id": "972302655193-dn5rgh0ma7duoqmitogf3vv0pd57vt5n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.story_tail.privypics.dev",
+            "certificate_hash": "569173f4f3bc39385f179de4fbb2028bfd0ee2fb"
+          }
+        },
+        {
+          "client_id": "972302655193-68egeb5u7hsfq0cu27tu7u67g36o6p3c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6-YBYsG4qBMXH0D2sCNpJ4OlRvcgl11w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972302655193-68egeb5u7hsfq0cu27tu7u67g36o6p3c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

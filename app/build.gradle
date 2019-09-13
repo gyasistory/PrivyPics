@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.story_tail.privypics"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Kotlin
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_stdlib}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_stdlib}"
+    implementation "androidx.core:core-ktx:${core_ktx}"
+
+    // Unit Testing
+    testImplementation "junit:junit:${junit}"
+    androidTestImplementation "androidx.test:runner:${runner}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${espresso_core}"
+
+    // Android Support
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${archLifecycleVersion}"
+    implementation "android.arch.navigation:navigation-fragment:${navigation}"
+    implementation "android.arch.navigation:navigation-ui:${navigation}"
+    implementation "androidx.recyclerview:recyclerview:${recyclerview}"
+    implementation "androidx.viewpager:viewpager:${viewpager}"
+    implementation "androidx.appcompat:appcompat:${appcompat}"
+    implementation "androidx.legacy:legacy-support-v4:${legacy_support}"
+    implementation "com.google.android.material:material:${material}"
+    implementation "androidx.constraintlayout:constraintlayout:${constraintlayout}"
+    implementation "androidx.annotation:annotation:${annotation}"
+
+    // Firebase
+    implementation "com.google.firebase:firebase-core:${firebase_core}"
+    implementation "com.google.firebase:firebase-messaging:${firebase_messagin}"
+    implementation "com.google.firebase:firebase-auth:${firebase_auth}"
+    implementation "com.google.firebase:firebase-inappmessaging-display:${firebase_inappmessaging}"
+
+    // Room components
+    implementation "androidx.room:room-runtime:${roomVersion}"
+    implementation "androidx.room:room-ktx:${roomVersion}"
+    kapt "androidx.room:room-compiler:${roomVersion}"
+//    androidTestImplementation "androidx.room:room-testing:${roomVersion}"
+
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-extensions:${lifecycle_extensions}"
+    implementation "androidx.lifecycle:lifecycle-common-java8:${archLifecycleVersion}"
+//    kapt "androidx.lifecycle:lifecycle-compiler:${archLifecycleVersion}"
+//    androidTestImplementation "androidx.arch.core:core-testing:${androidxArchVersion}"
+
+    // ViewModel Kotlin support
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${archLifecycleVersion}"
+
+    // Coroutines
+//    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}"
+//    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}"
+}
+
