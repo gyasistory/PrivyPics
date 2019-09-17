@@ -48,8 +48,8 @@ jobs:
         - ./gradlew check --continue --stacktrace --parallel
 
       after_failure:
-        - cat /home/travis/build/CruGlobal/mpdx-android/build/reports/lint-results*.xml
-        - cat /home/travis/build/CruGlobal/mpdx-android/*/build/reports/lint-results*.xml
+        - cat /home/travis/build/gyasistory/PrivyPics/build/reports/lint-results*.xml
+        - cat /home/travis/build/gyasistory/PrivyPics/*/build/reports/lint-results*.xml
 
     - name: "Fastlane Test"
         stage: test
