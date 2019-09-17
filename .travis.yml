@@ -71,4 +71,4 @@ jobs:
       script: fastlane android beta
 
 notifications:
-  email: false
+  email: true
