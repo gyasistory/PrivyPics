@@ -3,6 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools" package="com.story_tail.privypics">
 
     <uses-feature android:name="android.hardware.camera2" android:required="true"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
             android:allowBackup="true"
@@ -24,7 +25,9 @@
                 android:name=".ui.MainActivity"
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
-
+            <meta-data
+                    android:name="io.fabric.ApiKey"
+                    android:value="0541f9bb7eda2e8b6a097c0d9545e41f91695acf" />
         </activity>
     </application>
 

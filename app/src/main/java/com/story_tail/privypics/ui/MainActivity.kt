@@ -14,11 +14,14 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.crashlytics.android.Crashlytics
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.story_tail.privypics.R
 import com.story_tail.privypics.model.Category
 import com.story_tail.privypics.viewmodel.MainActivityViewModel
+import io.fabric.sdk.android.Fabric
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val mainActivityViewModel by lazy {
@@ -27,10 +30,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
+        Fabric.with(this, Crashlytics())
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { takePictureIntent() }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -101,6 +105,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             Toast.makeText(this, "You got an image", Toast.LENGTH_LONG).show()
         }
+        super.onActivityResult(requestCode, resultCode, data)
     }
     private fun takePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
