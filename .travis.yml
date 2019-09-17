@@ -55,7 +55,7 @@ jobs:
     stage: test
 
     install:
-    - git fetch --unshallow
+    - git fetch
     - gem install bundler
     - bundler install
     script: fastlane android test
