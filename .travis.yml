@@ -18,14 +18,14 @@ stages:
     if: type = push
 
 before_cache:
-- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
 cache:
   directories:
-  - $HOME/.android/build-cache
-  - $HOME/.gradle/caches/
-  - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 
 before_install:
   - chmod +x gradlew
@@ -50,6 +50,25 @@ jobs:
       after_failure:
         - cat /home/travis/build/CruGlobal/mpdx-android/build/reports/lint-results*.xml
         - cat /home/travis/build/CruGlobal/mpdx-android/*/build/reports/lint-results*.xml
+
+    - name: "Fastlane Test"
+        stage: test
+
+        install:
+          - git fetch --unshallow
+          - gem install bundler
+          - bundler install
+        script: fastlane android test
+
+    - name: "Fastlane Beta"
+      stage: release
+      if: repo = gyasistory/PrivyPics AND type = push AND branch = development
+
+      install:
+        - git fetch --unshallow
+        - gem install bundler
+        - bundler install
+      script: fastlane android beta
 
 notifications:
   email: false
