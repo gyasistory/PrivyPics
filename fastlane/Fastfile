@@ -3,4 +3,3 @@ import_from_git(
     branch: 'master',
     path: 'fastlanefiles/Fastfile'
    )
-
