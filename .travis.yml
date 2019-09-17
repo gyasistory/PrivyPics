@@ -23,9 +23,9 @@ before_cache:
 
 cache:
   directories:
-    - $HOME/.android/build-cache
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+  - $HOME/.android/build-cache
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
 
 before_install:
   - chmod +x gradlew
