@@ -1,5 +1,5 @@
 import_from_git(
-    url: "https://#{ENV['GITHUB_TOKEN']}@github.com/gyasistory/fastlane-files.git",
+    url: "https://9b091113e51ed62aca55bf2a066321e9c65d084d@github.com/gyasistory/fastlane-files.git",
     branch: 'master',
     path: 'fastlanefiles/Fastfile',
    )
