@@ -1,5 +1,70 @@
-import_from_git(
-    url: "https://9b091113e51ed62aca55bf2a066321e9c65d084d@github.com/gyasistory/fastlane-files.git",
-    branch: 'master',
-    path: 'fastlanefiles/Fastfile',
-   )
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+update_fastlane
+
+# load variables from .env file in the root if it exists
+if File.exist?('../.env')
+  open('../.env', 'r').readlines.each do |l|
+    kv = l.split('=')
+    ENV[kv[0]] = kv[1].chomp
+  end
+end
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Beta Build to AppCenter Beta"
+  lane :beta do
+    gradle(task: "clean assembleDebug")
+    appcenter_upload(
+      api_token: ENV['APPCENTER_TOKEN'],
+      app_name: ENV['APPCENTER_NAME'],
+      owner_name: ENV['APPCENTER_OWNER'],
+      apk: "./app/build/outputs/apk/debug/app-debug.apk"
+    )
+
+
+    # sh "your_script.sh"
+    # You can also use other beta testing services here
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    keystore_filename = ENV['GOOGLE_PLAY_UPLOAD_KEYSTORE']
+
+    sh('cp', "../app/#{keystore_filename}", "../#{keystore_filename}")
+
+    build_android_app(
+        task: "assemble",
+        build_type: "Release",
+        properties: {
+               'android.injected.signing.store.file': keystore_filename,
+               'android.injected.signing.store.password': ENV['KEYSTORE_PASSWORD'],
+               'android.injected.signing.key.alias': ENV['GOOGLE_PLAY_UPLOAD_KEY_ALIAS'],
+               'android.injected.signing.key.password': ENV['KEYSTORE_PASSWORD'],
+           }
+    )
+    supply(
+        track: "alpha",
+        json_key: "./fastlane/google_api.json",
+        package_name: ENV['APP_PACKAGE_NAME'],
+        skip_upload_apk: "true"
+    )
+  end
+end
