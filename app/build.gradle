@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 29
@@ -93,8 +92,7 @@ dependencies {
 //    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}"
 //    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}"
 
-    compile('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
-        transitive = true;
-    }
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenter}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenter}"
 }
 

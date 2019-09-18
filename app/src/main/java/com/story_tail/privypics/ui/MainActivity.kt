@@ -1,5 +1,6 @@
 package com.story_tail.privypics.ui
 
+
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -14,13 +15,14 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.crashlytics.android.Crashlytics
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import com.story_tail.privypics.R
 import com.story_tail.privypics.model.Category
 import com.story_tail.privypics.viewmodel.MainActivityViewModel
-import io.fabric.sdk.android.Fabric
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -34,7 +36,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        Fabric.with(this, Crashlytics())
+        AppCenter.start(
+            application, "c7a91285-1aee-40c4-ab84-5712bd5fe87b",
+            Analytics::class.java, Crashes::class.java
+        )
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { takePictureIntent() }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
