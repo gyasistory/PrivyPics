@@ -60,6 +60,18 @@ platform :android do
                'android.injected.signing.key.password': ENV['KEYSTORE_PASSWORD'],
            }
     )
+
+    build_android_app(
+        task: "bundle",
+        build_type: "Release",
+        properties: {
+               'android.injected.signing.store.file': keystore_filename,
+               'android.injected.signing.store.password': ENV['KEYSTORE_PASSWORD'],
+               'android.injected.signing.key.alias': ENV['GOOGLE_PLAY_UPLOAD_KEY_ALIAS'],
+               'android.injected.signing.key.password': ENV['KEYSTORE_PASSWORD'],
+           }
+    )
+
     supply(
         track: "alpha",
         json_key: "./fastlane/google_api.json",
