@@ -3,11 +3,11 @@ package com.story_tail.privypics.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            Toast.makeText(this, "You got an image", Toast.LENGTH_LONG).show()
+            addPhotoDialog(data?.getByteArrayExtra("data"))
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -122,7 +122,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun addPhotoDialog(photo: ByteArray) {
-        val dialogBuilder = AlertDialog.Builder(this)
+//        val bitmap =
+
     }
 
     companion object {
