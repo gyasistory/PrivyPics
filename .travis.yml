@@ -39,17 +39,47 @@ install: skip
 
 jobs:
   include:
-    - name: "Static Analysis"
-      stage: compile
+  - name: "Static Analysis"
+    stage: compile
 
-      before_script: skip
-      script:
-        - chmod +x gradlew
-        - ./gradlew check --continue --stacktrace --parallel
+    before_script: skip
+    script:
+    - chmod +x gradlew
+    - ./gradlew check --continue --stacktrace --parallel
 
-      after_failure:
-        - cat /home/travis/build/CruGlobal/mpdx-android/build/reports/lint-results*.xml
-        - cat /home/travis/build/CruGlobal/mpdx-android/*/build/reports/lint-results*.xml
+    after_failure:
+    - cat /home/travis/build/gyasistory/PrivyPics/build/reports/lint-results*.xml
+    - cat /home/travis/build/gyasistory/PrivyPics/*/build/reports/lint-results*.xml
+
+  - name: "Fastlane Test"
+    stage: test
+
+    install:
+    - git fetch
+    - gem install bundler
+    - bundler install
+    script: fastlane android test
+
+  - name: "Fastlane Beta"
+    stage: release
+    if: repo = gyasistory/PrivyPics AND type = push AND branch = development
+
+    install:
+    - git fetch
+    - gem install bundler
+    - bundler install
+    script: fastlane android beta
+
+  - name: "Fastlane Release"
+    stage: release
+    if: repo = gyasistory/PrivyPics AND type = push AND branch = master
+
+    install:
+      - git fetch
+      - gem install bundler
+      - bundler install
+    script: fastlane android deploy
 
 notifications:
-  email: false
+  email: true
+  

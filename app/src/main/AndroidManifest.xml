@@ -3,6 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools" package="com.story_tail.privypics">
 
     <uses-feature android:name="android.hardware.camera2" android:required="true"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
             android:allowBackup="true"

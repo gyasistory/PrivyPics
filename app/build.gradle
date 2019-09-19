@@ -91,5 +91,8 @@ dependencies {
     // Coroutines
 //    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}"
 //    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}"
+
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenter}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenter}"
 }
 
