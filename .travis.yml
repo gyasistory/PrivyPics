@@ -68,7 +68,9 @@ jobs:
     - git fetch
     - gem install bundler
     - bundler install
-    script: fastlane android beta
+    script:
+    - bump release
+    - fastlane android beta
 
   - name: "Fastlane Release"
     stage: release
