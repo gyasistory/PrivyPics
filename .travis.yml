@@ -69,7 +69,7 @@ jobs:
     - gem install bundler
     - bundler install
     script:
-    - bumped release
+    - fastlane android update_version
     - fastlane android beta
 
   - name: "Fastlane Release"
