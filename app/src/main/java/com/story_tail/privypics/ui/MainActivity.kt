@@ -3,13 +3,13 @@ package com.story_tail.privypics.ui
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.BitmapFactory
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -97,7 +97,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            addPhotoDialog(data?.getByteArrayExtra("data"))
+            val bitmap: Bitmap = data?.extras?.get("data") as Bitmap
+            bitmap?.let { addPhotoDialog(it) }
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -121,9 +122,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun addPhotoDialog(photo: ByteArray) {
-//        val bitmap =
-
+    private fun addPhotoDialog(photo: Bitmap) {
+        Handler().post {
+            val dialogFragment = AddImageDialogFragment(photo)
+            dialogFragment.show(supportFragmentManager, dialogFragment.javaClass.name)
+        }
     }
 
     companion object {
