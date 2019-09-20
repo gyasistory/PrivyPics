@@ -26,6 +26,7 @@ class ImageViewModel(context: Context) : ViewModel() {
     }
 
     var image: Bitmap?
+        get() = model.value?.data
         set(value) {
             model.value?.let {
                 it.data = value
@@ -35,7 +36,6 @@ class ImageViewModel(context: Context) : ViewModel() {
             image.data = value
             model.value = image
         }
-        get() = model.value?.data
 
     private fun createImage(): Image {
         val image = Image()
