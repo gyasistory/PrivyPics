@@ -32,7 +32,7 @@ platform :android do
     gradle(task: "assemble")
     commit_android_version_bump(
       # gradle_file_folder:"app"
-      app_folder_name: "app"
+      app_folder_name: "PrivyPics"
     )
   end
 
