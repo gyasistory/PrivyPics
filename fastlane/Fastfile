@@ -29,11 +29,7 @@ platform :android do
   lane :update_version do
     gradle(task: "clean")
     increment_version_code
-    gradle(task: "assemble")
-    commit_android_version_bump(
-      # gradle_file_folder:"app"
-      app_folder_name: "PrivyPics"
-    )
+    commit_android_version_bump
   end
 
   desc "Runs all the tests"
