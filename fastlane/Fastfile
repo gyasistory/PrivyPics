@@ -81,7 +81,7 @@ platform :android do
     )
 
     supply(
-        track: "Alpha",
+        track: "alpha",
         json_key: "./fastlane/google_api.json",
         package_name: ENV['APP_PACKAGE_NAME'],
         skip_upload_apk: "true"
