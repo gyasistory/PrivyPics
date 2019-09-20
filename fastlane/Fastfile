@@ -24,6 +24,14 @@ end
 default_platform(:android)
 
 platform :android do
+
+  desc "Update_version_code"
+  lane :update_version do
+    gradle(task: "clean")
+    increment_version_code
+    commit_android_version_bump
+  end
+
   desc "Runs all the tests"
   lane :test do
     gradle(task: "test")

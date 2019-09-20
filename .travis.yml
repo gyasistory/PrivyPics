@@ -51,14 +51,14 @@ jobs:
     - cat /home/travis/build/gyasistory/PrivyPics/build/reports/lint-results*.xml
     - cat /home/travis/build/gyasistory/PrivyPics/*/build/reports/lint-results*.xml
 
-  - name: "Fastlane Test"
-    stage: test
-
-    install:
-    - git fetch
-    - gem install bundler
-    - bundler install
-    script: fastlane android test
+#  - name: "Fastlane Test"
+#    stage: test
+#
+#    install:
+#    - git fetch
+#    - gem install bundler
+#    - bundler install
+#    script: fastlane android test
 
   - name: "Fastlane Beta"
     stage: release
@@ -68,7 +68,8 @@ jobs:
     - git fetch
     - gem install bundler
     - bundler install
-    script: fastlane android beta
+    script:
+    - fastlane android beta
 
   - name: "Fastlane Release"
     stage: release
