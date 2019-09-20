@@ -69,8 +69,8 @@ jobs:
     - gem install bundler
     - bundler install
     script:
-    - fastlane android update_version
-    - fastlane android beta
+    - bundle exec fastlane android update_version
+    - bundle exec fastlane android beta
 
   - name: "Fastlane Release"
     stage: release
