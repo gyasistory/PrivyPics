@@ -40,11 +40,10 @@ platform :android do
   desc "Submit a new Beta Build to AppCenter Beta"
   lane :beta do
     gradle(task: "clean assembleDebug")
-    appcenter_upload(
-      api_token: ENV['APPCENTER_TOKEN'],
-      app_name: ENV['APPCENTER_NAME'],
-      owner_name: ENV['APPCENTER_OWNER'],
-      apk: "./app/build/outputs/apk/debug/app-debug.apk"
+    firebase_app_distribution(
+      app: ENV['FIREBASE_APP_ID'],
+      apk_path: "./app/build/outputs/apk/debug/app-debug.apk",
+      release_notes_file: "./release_notes.txt"
     )
 
 
