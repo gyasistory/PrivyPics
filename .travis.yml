@@ -69,7 +69,8 @@ jobs:
     - gem install bundler
     - bundler install
     script:
-    - fastlane android beta
+    - ./gradlew assembleDebug appDistributionUploadDebug
+
 
   - name: "Fastlane Release"
     stage: release
@@ -79,7 +80,10 @@ jobs:
       - git fetch
       - gem install bundler
       - bundler install
-    script: fastlane android deploy
+    script:
+    - fastlane android deploy
+    - ./gradlew assembleRelease appDistributionUploadRelease
+
 
 notifications:
   email: true
