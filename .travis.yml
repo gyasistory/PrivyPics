@@ -60,7 +60,7 @@ jobs:
 #    - bundler install
 #    script: fastlane android test
 
-  - name: "Fastlane Beta"
+  - name: "Deploy Beta"
     stage: release
     if: repo = gyasistory/PrivyPics AND type = push AND branch = development
 
