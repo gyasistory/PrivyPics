@@ -1,7 +1,7 @@
 ext {
     annotation = '1.1.0'
     appcompat = '1.1.0'
-    appCenter = '2.3.0'
+    appCenter = '2.4.0'
     androidxArchVersion = '2.0.1'
     archLifecycleVersion = '2.2.0-beta01'
     constraintlayout = '1.1.3'
