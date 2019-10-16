@@ -71,7 +71,7 @@ jobs:
     script:
     - chmod +x gradlew
     - ./gradlew assembleDebug appDistributionUploadDebug
-    - fastlane android update_version
+    - sudo fastlane android update_version
 
 
   - name: "Fastlane Release"
