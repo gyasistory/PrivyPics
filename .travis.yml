@@ -70,7 +70,7 @@ jobs:
     - bundler install
     script:
     - chmod +x gradlew
-    - ./gradlew assembleDebug appDistributionUploadDebug
+    - sudo fastlane android beta
     - sudo fastlane android update_version
 
 
