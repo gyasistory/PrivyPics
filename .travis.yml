@@ -70,8 +70,8 @@ jobs:
     - bundler install
     script:
     - chmod +x gradlew
-    - sudo fastlane android beta
-    - sudo fastlane android update_version
+    - fastlane android beta
+    - fastlane android update_version
 
 
   - name: "Fastlane Release"
