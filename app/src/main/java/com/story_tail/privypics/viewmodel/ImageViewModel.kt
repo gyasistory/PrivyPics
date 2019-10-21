@@ -4,9 +4,10 @@ import android.content.Context
 import android.graphics.Bitmap
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.story_tail.privypics.model.Image
 import com.story_tail.privypics.repository.ImageRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -19,10 +20,11 @@ class ImageViewModel(context: Context) : ViewModel() {
     }
 
     fun saveImage() {
-        viewModelScope.launch {
-            model.value?.let { imageRepository.insertImage(it) }
+        model.value?.let {
+            GlobalScope.launch(Dispatchers.IO) {
+                imageRepository.insertImage(it)
+            }
         }
-
     }
 
     var image: Bitmap?
@@ -37,9 +39,14 @@ class ImageViewModel(context: Context) : ViewModel() {
             model.value = image
         }
 
+    var description = model.value?.description
+
     private fun createImage(): Image {
         val image = Image()
         image.id = UUID.randomUUID()
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            image.dateTaken = Date.from(Instant.now()) as Date?
+//        }
         return image
     }
 }
