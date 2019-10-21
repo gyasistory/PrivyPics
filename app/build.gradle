@@ -88,10 +88,8 @@ dependencies {
 
     // ViewModel Kotlin support
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${archLifecycleVersion}"
-
-    // Coroutines
-//    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}"
-//    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}"
+    implementation "com.louiscad.splitties:splitties-fragmentargs:${splitties}"
+    implementation "com.squareup.picasso:picasso:${picasso}"
 
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenter}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenter}"

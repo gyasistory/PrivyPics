@@ -3,11 +3,12 @@ package com.story_tail.privypics.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -79,18 +80,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-////        return when (item.itemId) {
-//////            R.id.action_settings -> true
-////            else -> super.onOptionsItemSelected(item)
-////        }
-//        return super.onOptionsItemSelected(item)
-//    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
@@ -108,7 +97,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            Toast.makeText(this, "You got an image", Toast.LENGTH_LONG).show()
+            val bitmap: Bitmap = data?.extras?.get("data") as Bitmap
+            bitmap?.let { addPhotoDialog(it) }
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -129,6 +119,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             category.name = getString(R.string.category_all)
             category.priority = 0
             mainActivityViewModel.insertCategory(category)
+        }
+    }
+
+    private fun addPhotoDialog(photo: Bitmap) {
+        Handler().post {
+            val dialogFragment = AddImageDialogFragment(photo)
+            dialogFragment.show(supportFragmentManager, dialogFragment.javaClass.name)
         }
     }
 
