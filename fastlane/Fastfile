@@ -29,7 +29,6 @@ platform :android do
   lane :update_version do
     gradle(task: "clean")
     increment_version_code
-    gradle(task: "assemble")
     commit_android_version_bump
   end
 
@@ -41,12 +40,11 @@ platform :android do
   desc "Submit a new Beta Build to AppCenter Beta"
   lane :beta do
     gradle(task: "clean assembleDebug")
-    firebase_app_distribution(
-      app: ENV['FIREBASE_APP_ID'],
-      apk_path: "./app/build/outputs/apk/debug/app-debug.apk",
-      firebase_cli_token: ENV['FIREBASE_TOKEN'],
-      release_notes_file: "./release_notes.txt",
-      firebase_cli_path: "./"
+    appcenter_upload(
+      api_token: ENV['APPCENTER_TOKEN'],
+      app_name: ENV['APPCENTER_NAME'],
+      owner_name: ENV['APPCENTER_OWNER'],
+      apk: "./app/build/outputs/apk/debug/app-debug.apk"
     )
 
 

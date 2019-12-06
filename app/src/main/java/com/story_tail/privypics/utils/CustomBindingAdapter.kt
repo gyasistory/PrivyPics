@@ -5,6 +5,6 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 
 @BindingAdapter("bitmap")
-fun AppCompatImageView?.setBitmap(bitmap: Bitmap?) {
-    bitmap?.let { this?.setImageBitmap(it) }
+fun AppCompatImageView?.setBitmap(bitmap: Bitmap) {
+    this.setBitmap(bitmap)
 }

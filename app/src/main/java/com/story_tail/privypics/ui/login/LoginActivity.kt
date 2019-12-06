@@ -1,5 +1,7 @@
 package com.story_tail.privypics.ui.login
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,12 +10,15 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.story_tail.privypics.R
-import com.story_tail.privypics.ui.login.listeners.AuthListener
+import com.story_tail.privypics.ui.MainActivity
 
-class LoginActivity : AppCompatActivity(), AuthListener {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
 
@@ -27,8 +32,38 @@ class LoginActivity : AppCompatActivity(), AuthListener {
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
-        loginViewModel = ViewModelProviders.of(this)
+        loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
+
+        loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
+            val loginState = it ?: return@Observer
+
+            // disable login button unless both username / password is valid
+            login.isEnabled = loginState.isDataValid
+
+            if (loginState.usernameError != null) {
+                username.error = getString(loginState.usernameError)
+            }
+            if (loginState.passwordError != null) {
+                password.error = getString(loginState.passwordError)
+            }
+        })
+
+        loginViewModel.loginResult.observe(this@LoginActivity, Observer {
+            val loginResult = it ?: return@Observer
+
+            loading.visibility = View.GONE
+            if (loginResult.error != null) {
+                showLoginFailed(loginResult.error)
+            }
+            if (loginResult.success != null) {
+                updateUiWithUser(loginResult.success)
+            }
+            setResult(Activity.RESULT_OK)
+
+            //Complete and destroy login activity once successful
+//            finish()
+        })
 
         username.afterTextChanged {
             loginViewModel.loginDataChanged(
@@ -63,16 +98,21 @@ class LoginActivity : AppCompatActivity(), AuthListener {
         }
     }
 
-    override fun onSuccess() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun updateUiWithUser(model: LoggedInUserView) {
+        val welcome = getString(R.string.welcome)
+        val displayName = model.displayName
+        // TODO : initiate successful logged in experience
+        Toast.makeText(
+            applicationContext,
+            "$welcome $displayName",
+            Toast.LENGTH_LONG
+        ).show()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
-    override fun onFail() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onError(error: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun showLoginFailed(@StringRes errorString: Int) {
+        Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
 }
 
