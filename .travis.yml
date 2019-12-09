@@ -72,18 +72,6 @@ jobs:
 #    - cat /home/travis/build/gyasistory/PrivyPics/build/reports/lint-results*.xml
 #    - cat /home/travis/build/gyasistory/PrivyPics/*/build/reports/lint-results*.xml
 
-  - name: "Connected Check"
-    stage: compile
-
-    install: skip
-    script:
-    - chmod +x gradlew
-    - ./gradlew connectedCheck --continue --stacktrace --parallel
-
-    after_failure:
-    - cat /home/travis/build/gyasistory/PrivyPics/build/reports/lint-results*.xml
-    - cat /home/travis/build/gyasistory/PrivyPics/*/build/reports/lint-results*.xml
-
 #  - name: "Fastlane Test"
 #    stage: test
 #
