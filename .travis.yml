@@ -1,9 +1,16 @@
 language: android
 sudo: required
 jdk:  oraclejdk8
-#env:
-#  global:
-#  - GRADLE_OPTS="Xmx2048m"
+
+env:
+  global:
+    - GRADLE_OPTS="-Xmx3072m"
+    # wait up to 10 minutes for adb to connect to emulator
+    - ADB_INSTALL_TIMEOUT=10
+  matrix:
+    - ANDROID_TARGET=android-26 ANDROID_ABI=x86
+    - ANDROID_TARGET=android-16 ANDROID_ABI=x86
+
 branches:
   only:
     - development
@@ -46,6 +53,18 @@ jobs:
     script:
     - chmod +x gradlew
     - ./gradlew check --continue --stacktrace --parallel
+
+    after_failure:
+    - cat /home/travis/build/gyasistory/PrivyPics/build/reports/lint-results*.xml
+    - cat /home/travis/build/gyasistory/PrivyPics/*/build/reports/lint-results*.xml
+
+  - name: "Connected Check"
+    stage: compile
+
+    before_script: skip
+    script:
+    - chmod +x gradlew
+    - ./gradlew connectedCheck --continue --stacktrace --parallel
 
     after_failure:
     - cat /home/travis/build/gyasistory/PrivyPics/build/reports/lint-results*.xml
