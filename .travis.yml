@@ -42,21 +42,28 @@ before_install:
   - echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "$ANDROID_HOME/licenses/android-sdk-license"
   - echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "$ANDROID_HOME/licenses/android-sdk-license"
 
+before_script:
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t android-22 --abi x86
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
 install: skip
 
 jobs:
   include:
-  - name: "Static Analysis"
-    stage: compile
-
-    before_script: skip
-    script:
-    - chmod +x gradlew
-    - ./gradlew check --continue --stacktrace --parallel
-
-    after_failure:
-    - cat /home/travis/build/gyasistory/PrivyPics/build/reports/lint-results*.xml
-    - cat /home/travis/build/gyasistory/PrivyPics/*/build/reports/lint-results*.xml
+#  - name: "Static Analysis"
+#    stage: compile
+#
+#    before_script: skip
+#    script:
+#    - chmod +x gradlew
+#    - ./gradlew check --continue --stacktrace --parallel
+#
+#    after_failure:
+#    - cat /home/travis/build/gyasistory/PrivyPics/build/reports/lint-results*.xml
+#    - cat /home/travis/build/gyasistory/PrivyPics/*/build/reports/lint-results*.xml
 
   - name: "Connected Check"
     stage: compile
