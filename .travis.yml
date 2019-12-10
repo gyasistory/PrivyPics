@@ -51,7 +51,7 @@ install:
   # Create and start emulator for the script. Meant to race the install task.
   - echo no | avdmanager create avd --force -n test -k "system-images;$ANDROID_TARGET;default;$ANDROID_ABI"
 #  - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
-  - android-sdk-linux/emulator/emulator -avd test -no-boot-anim -no-snapshot-save -no-audio -no-window -gpu off -debug  -all
+  - $ANDROID_HOME/emulator/emulator  -avd test -no-boot-anim -no-snapshot-save -no-audio -no-window -gpu off -debug  -all
   # build the tests
   - ./gradlew clean assembleAndroidTest --continue --stacktrace --parallel
 script:
