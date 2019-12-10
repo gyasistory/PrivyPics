@@ -3,23 +3,16 @@ dist: trusty
 sudo: required
 jdk:  oraclejdk8
 
-android:
-  components:
-    - build-tools-29.0.3
-    - $ANDROID_TARGET
-    - sys-img-armeabi-v7a-$ANDROID_TARGET
-    - extra-android-support
-    - extra-android-m2repository
-    - extra-google-m2repository
-
 env:
   global:
     - GRADLE_OPTS="-Xmx3072m"
     # wait up to 10 minutes for adb to connect to emulator
     - ADB_INSTALL_TIMEOUT=10
   matrix:
-    - ANDROID_TARGET=android-26 ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-28 ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
     - ANDROID_TARGET=android-18 ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-16 ANDROID_ABI=armeabi-v7a
 
 branches:
   only:
@@ -55,12 +48,12 @@ before_install:
 install:
   # Install the rest of tools (e.g., avdmanager)
   - sdkmanager tools
+  - sdkmanager emulator
   # Install the system image
   - sdkmanager "system-images;$ANDROID_TARGET;default;$ANDROID_ABI"
   # Create and start emulator for the script. Meant to race the install task.
   - echo no | avdmanager create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-#  - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
-  - $ANDROID_HOME/emulator/emulator  -avd test -no-boot-anim -no-snapshot-save -no-audio -no-window -gpu off -debug  -all
+  - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu swiftshader_indirect &
   # build the tests
   - ./gradlew clean assembleAndroidTest --continue --stacktrace --parallel
 script:
