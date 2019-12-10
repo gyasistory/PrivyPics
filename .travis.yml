@@ -124,9 +124,9 @@ android:
     - extra-google-m2repository
 env:
   matrix:
-    - ANDROID_TARGET=android-19  ANDROID_ABI=x86
+    - ANDROID_TARGET=android-21  ANDROID_ABI=x86
 before_script:
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
+  - emulator avd test -memory 1500 -no-accel -gpu swiftshader -skin 720x1280 -camera-back none -camera-front none -no-boot-anim -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
