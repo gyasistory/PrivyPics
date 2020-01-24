@@ -1,13 +1,12 @@
 package com.story_tail.privypics.ui.login
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
+import com.story_tail.privypics.R
 import com.story_tail.privypics.data.LoginRepository
 import com.story_tail.privypics.data.Result
-
-import com.story_tail.privypics.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

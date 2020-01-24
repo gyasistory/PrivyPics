@@ -2,11 +2,7 @@ package com.story_tail.privypics.ui.login
 
 import android.app.Activity
 import android.content.Intent
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -15,9 +11,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.story_tail.privypics.ui.MainActivity
-
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.story_tail.privypics.R
+import com.story_tail.privypics.ui.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -63,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
-            finish()
+//            finish()
         })
 
         username.afterTextChanged {
@@ -109,6 +108,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.LENGTH_LONG
         ).show()
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
