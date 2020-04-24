@@ -10,7 +10,7 @@ ext {
     espresso_core = '3.2.0'
     firebase_auth = '19.3.1'
     firebase_core = '17.4.0'
-    firebase_inappmessaging = '19.0.5'
+    firebase_inappmessaging = '19.0.6'
     firebase_messagin = '20.1.6'
     junit = '4.13'
     kotlin_stdlib = kotlin_version
