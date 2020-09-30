@@ -11,7 +11,7 @@ ext {
     firebase_auth = '19.3.2'
     firebase_core = '17.4.4'
     firebase_inappmessaging = '19.1.0'
-    firebase_messagin = '20.2.3'
+    firebase_messagin = '20.3.0'
     junit = '4.13'
     kotlin_stdlib = kotlin_version
     legacy_support = '1.0.0'
