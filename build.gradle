@@ -1,5 +1,5 @@
 ext {
-    annotation = '1.1.0'
+    annotation = '1.2.0'
     appcompat = '1.2.0'
     appCenter = '4.1.1'
     androidxArchVersion = '2.0.1'
