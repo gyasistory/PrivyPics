@@ -7,7 +7,7 @@ ext {
     constraintlayout = '2.0.4'
     coroutines = '1.2.0'
     core_ktx = '1.6.0'
-    espresso_core = '3.3.0'
+    espresso_core = '3.4.0'
     firebase_auth = '21.0.1'
     firebase_core = '19.0.0'
     firebase_inappmessaging = '20.0.0'
